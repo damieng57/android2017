@@ -6,13 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-
-
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -35,21 +32,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Le portefeuille sur lequel on travaille
         this.monPorteFeuille = new Portefeuille();
+        // La devise courante
+        this.devise = new Devise();
 
+        // On recupère le portefeuille et la devise courante en cas de rotation
         if (savedInstanceState != null) {
             this.monPorteFeuille = (Portefeuille) savedInstanceState.getSerializable("portefeuille");
+            this.devise = (Devise) savedInstanceState.getSerializable("devise");
+        // On démarre l'appli, on récupère le portefeuille depuis un fichier sérialisé
         } else {
             try {
                 ObjectInputStream ois = new ObjectInputStream(this.openFileInput("portefeuille.ser"));
                 this.monPorteFeuille = (Portefeuille) ois.readObject();
                 ois.close();
             } catch (IOException | ClassNotFoundException ex) {
-                // Texte uniquement pour le déboggage
-                CharSequence text = "Fichier inaccessible en lecture!"+ex.toString();
-                int duration = Toast.LENGTH_LONG;
-                Toast toast = Toast.makeText(this, text, duration);
-                toast.show();
+                // Texte uniquement pour le déboggage - Au premier lancement, le fichier n'existant pas
+                // il lève une exception. Plus de problème ensuite.
+//                CharSequence text = "Fichier inaccessible en lecture!"+ex.toString();
+//                int duration = Toast.LENGTH_LONG;
+//                Toast toast = Toast.makeText(this, text, duration);
+//                toast.show();
             }
         }
     }
@@ -57,23 +61,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onStart(){
         super.onStart();
-
         this.maListe = this.findViewById(R.id.ma_liste);
 
+        // Adaptateur Portfeuille<Devise> -> ListView
         this.adaptateur = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1,
                 this.monPorteFeuille.getValeurs());
         this.maListe.setAdapter(adaptateur);
 
+        // Définition des écouteurs sur la liste
         this.maListe.setOnItemClickListener(this);
         this.maListe.setOnItemLongClickListener(this);
     }
 
+    // Création d'une devise
+    // On appelle UpdateActivity sans paramètre
     public void creeDevise(View view) {
         Intent appelActivite = new Intent(this, UpdateActivity.class);
         startActivityForResult(appelActivite, CREATION_DEVISE);
     }
 
+    // Simple clic sur la ListView, on appelle DeviseActivity et on passe en paramètre la devise
+    // depuis la listView
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         int indexListe = position;
@@ -84,9 +93,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivityForResult(appelActivite, GESTION_DEVISE);
     }
 
+    // Appui long sur la listView, on veut modifier le nom de la devise en cours
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
         int indexListe = position;
 
         this.devise = (Devise) this.maListe.getItemAtPosition(indexListe);
@@ -97,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return true;
     }
 
+    // Traitement des résultats reçues des activités filles (DeviseActivity et UpdateActivity)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
 
@@ -122,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     this.adaptateur.notifyDataSetChanged();
                 } catch (NullPointerException ex) {
                     // Texte uniquement pour le déboggage
-                    //afficheMessage(ex, Toast.LENGTH_LONG);
+                    afficheMessage(ex.toString(), Toast.LENGTH_LONG);
                 }
             }
         }
@@ -131,9 +141,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        // On sauvegarde le portefeuille courant
         outState.putSerializable("portefeuille", this.monPorteFeuille);
+        // On sauvegarde la devise courante! (Sinon, pas de mise à jour en cas de rotation.)
+        outState.putSerializable("devise", this.devise);
     }
 
+    // Enregistrement du portefeuille dans dichier sérialiser avant fermeture du programme
     @Override
     protected void onPause() {
         super.onPause();
