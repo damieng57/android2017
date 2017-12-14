@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Devise</string>
+    <string name="affichage">%1$s en poche : %2$.2f</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="retirer">Retirer</string>
+    <string name="decouvert">Découvert interdit</string>
+    <string name="compteazero">Plus de liquidité sur le compte</string>
+    <string name="title_activity_porte_feuille">Contenu du portefeuille</string>
+    <string name="title_activity_update">Mise à jour/Ajout de devises</string>
+    <string name="title_activity_devise">Gestion des devises</string>
+    <string name="cancel">Annuler</string>
+    <string name="ok">Valider</string>
+    <string name="action_settings">Réglages</string>
+    <string name="majDevise">Mettre à jour une devise</string>
+    <string name="addDevise">"Ajouter une devise"</string>
+    <string name="entreNombre">Entrer une valeur numérique</string>
+    <string name="retour">Revenir au portefeuille</string>
+</resources>

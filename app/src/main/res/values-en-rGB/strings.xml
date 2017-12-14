@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Currence</string>
+    <string name="affichage">Pocketed %1$s : %2$.2f</string>
+    <string name="ajouter">Add</string>
+    <string name="retirer">Remove</string>
+    <string name="decouvert">Not enough money</string>
+    <string name="compteazero">No money on this account</string>
+    <string name="title_activity_porte_feuille">Wallet</string>
+    <string name="title_activity_update">Update/Add currency</string>
+    <string name="title_activity_devise">Currencies manager</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="action_settings">Settings</string>
+    <string name="majDevise">Update currency</string>
+    <string name="addDevise">"Add currency"</string>
+    <string name="entreNombre">Please, enter a number</string>
+</resources>
