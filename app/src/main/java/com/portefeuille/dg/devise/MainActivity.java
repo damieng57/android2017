@@ -114,10 +114,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 // Mettre à jour le portefeuille pour avoir la dernière valeur
                 Bundle bundle = data.getExtras();
                 Devise devise = (Devise) bundle.get("devise");
-                // Au retour de l'activité DeviseActivity, on l'ajoute au portefeuille
-                this.devise.setMontant(devise.getMontant());
-                // On mets à jour la liste view
-                this.adaptateur.notifyDataSetChanged();
+                // On tente l'ajout au portefeuille
+                try {
+                    // Au retour de l'activité DeviseActivity, on l'ajoute au portefeuille
+                    this.devise.setMontant(devise.getMontant());
+                    // On mets à jour la liste view
+                    this.adaptateur.notifyDataSetChanged();
+                } catch (NullPointerException ex) {
+                    // Texte uniquement pour le déboggage
+                    //afficheMessage(ex, Toast.LENGTH_LONG);
+                }
             }
         }
     }
