@@ -15,4 +15,9 @@
     <string name="addDevise">"Ajouter une devise"</string>
     <string name="entreNombre">Entrer une valeur numérique</string>
     <string name="retour">Revenir au portefeuille</string>
+    <string name="da_confirme_suppression">Voulez-vous supprimer la devise du portefeuille ?</string>
+    <string name="da_oui">Oui</string>
+    <string name="da_non">Non</string>
+    <string name="da_devise_nulle">Devise à 0</string>
+    <string name="nomExistant">La devise existe déjà</string>
 </resources>

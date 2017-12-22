@@ -7,8 +7,6 @@
     tools:context="com.portefeuille.dg.devise.DeviseActivity"
     >
 
-
-
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -19,50 +17,70 @@
         tools:showIn="@layout/activity_devise">
 
 
-        <TextView
-            android:id="@+id/tv_affichage"
-            android:layout_width="wrap_content"
+        <ScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/affichage"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textSize="25sp"
-            />
+            app:layout_constraintBottom_toTopOf="@+id/retour">
 
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/et_nom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            app:layout_constraintTop_toBottomOf="@+id/tv_affichage"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            />
+                <Button
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:onClick="retirer"
+                    android:text="@string/retirer"
+                    app:layout_constraintRight_toRightOf="@id/et_nom"
+                    app:layout_constraintTop_toBottomOf="@id/et_nom" />
+
+                <TextView
+                    android:id="@+id/tv_affichage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/affichage"
+                    android:layout_marginTop="55dp"
+                    android:textSize="25sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <EditText
+                    android:id="@+id/et_nom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:ems="10"
+                    android:inputType="numberDecimal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_affichage" />
+
+                <Button
+                    android:id="@+id/ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:onClick="ajouter"
+                    android:text="@string/ajouter"
+                    app:layout_constraintLeft_toLeftOf="@id/et_nom"
+                    app:layout_constraintTop_toBottomOf="@id/et_nom" />
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
 
         <Button
-            android:id="@+id/ok"
+            android:id="@+id/retour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ajouter"
-            app:layout_constraintLeft_toLeftOf="@id/et_nom"
-            app:layout_constraintTop_toBottomOf="@id/et_nom"
-            android:layout_marginTop="40dp"
-            android:onClick="ajouter"
-            />
-
-        <Button
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/retirer"
-            app:layout_constraintRight_toRightOf="@id/et_nom"
-            app:layout_constraintTop_toBottomOf="@id/et_nom"
-            android:layout_marginTop="40dp"
-            android:onClick="retirer"
+            android:text="@string/retour"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="15dp"
+            android:onClick="retour"
             />
 
     </android.support.constraint.ConstraintLayout>

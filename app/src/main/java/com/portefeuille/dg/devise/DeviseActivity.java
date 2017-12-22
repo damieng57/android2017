@@ -1,20 +1,17 @@
 package com.portefeuille.dg.devise;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.portefeuille.dg.devise.exceptions.DeviseDevientNulleException;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import com.portefeuille.dg.devise.modele.Devise;
 
 public class DeviseActivity extends AppCompatActivity {
 
@@ -68,10 +65,14 @@ public class DeviseActivity extends AppCompatActivity {
         } catch (NumberFormatException ex){
             afficheMessage(getString(R.string.entreNombre), Toast.LENGTH_LONG);
         }
+
+        // On masque le clavier
+        cacheClavier();
     }
 
     // Retirer de la devise en cours
     public void retirer(View view) {
+
         String montant = ma_montant.getText().toString();
 
         try{
@@ -83,6 +84,9 @@ public class DeviseActivity extends AppCompatActivity {
         } catch (IllegalArgumentException ex){
             afficheMessage(getString(R.string.decouvert), Toast.LENGTH_SHORT);
         }
+
+        // On masque le clavier
+        cacheClavier();
     }
 
     @Override
@@ -105,47 +109,22 @@ public class DeviseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         Intent appelActivite = new Intent();
+        this.setResult(CANCEL, appelActivite);
+        this.finish();
+    }
+
+    public void retour(View view) {
+        Intent appelActivite = new Intent();
         appelActivite.putExtra("devise", this.devise);
         this.setResult(OK, appelActivite);
         this.finish();
     }
 
-    public void retour(View view) {
-        onBackPressed();
+    private void cacheClavier() {
+        InputMethodManager mgr = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(this.ma_montant.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+        this.ma_montant.setText("");
     }
 }
-
-
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//
-//        try {
-//            ObjectOutputStream oos = new ObjectOutputStream(this.openFileOutput("devise.ser", Context.MODE_PRIVATE));
-//            oos.writeObject(this.devise);
-//            oos.close();
-//        } catch (IOException ex) {
-//            // Texte uniquement pour le déboggage
-//            //afficheMessage("Fichier inaccessible en écriture!", Toast.LENGTH_LONG);
-//        }
-//
-//    }
-
-
-
-// A placer dans onCreate
-// Cas si lancement direct en tant qu'appli principale, on charge les données depuis un fichier
-//        } else {
-//                try {
-//                    ObjectInputStream ois = new ObjectInputStream(this.openFileInput("devise.ser"));
-//                    devise = (Devise) ois.readObject();
-//                    ois.close();
-//                } catch (IOException | ClassNotFoundException ex) {
-//                    // Texte uniquement pour le déboggage
-//                    CharSequence text = "Fichier inaccessible en lecture!"+ex.toString();
-//                    int duration = Toast.LENGTH_LONG;
-//                    Toast toast = Toast.makeText(this, text, duration);
-//                    toast.show();
-//                }
-//        }
 

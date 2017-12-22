@@ -1,4 +1,4 @@
-package com.portefeuille.dg.devise;
+package com.portefeuille.dg.devise.modele;
 
 import com.portefeuille.dg.devise.exceptions.DeviseDevientNulleException;
 

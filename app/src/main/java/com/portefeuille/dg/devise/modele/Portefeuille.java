@@ -1,4 +1,4 @@
-package com.portefeuille.dg.devise;
+package com.portefeuille.dg.devise.modele;
 
 import com.portefeuille.dg.devise.exceptions.DeviseDevientNulleException;
 
@@ -87,7 +87,7 @@ public class Portefeuille implements Serializable {
 	 * 
 	 * Attention : nécessite qu'on implémente equals(Object) dans Devise 
 	 */ 
-	private int chercheMonnaie(String nom) {
+	public int chercheMonnaie(String nom) {
 		
 		return this.valeurs.indexOf(new Devise(nom, 0));
 	}
@@ -111,7 +111,7 @@ public class Portefeuille implements Serializable {
 		sB.append("Contenu du portefeuille :\n");
 		
 		for (Devise d : this.valeurs) {
-			sB.append(d+" ");
+			sB.append(d+"\n");
 		}
 		
 		return sB.toString();
