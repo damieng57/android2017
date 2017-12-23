@@ -106,6 +106,7 @@ public class DeviseActivity extends AppCompatActivity {
         ma_enpoche.setText(texte);
     }
 
+    // Utilisation du bouton du téléphone pour revenir en arrière
     @Override
     public void onBackPressed(){
         Intent appelActivite = new Intent();
@@ -113,6 +114,7 @@ public class DeviseActivity extends AppCompatActivity {
         this.finish();
     }
 
+    // Utilisation du bouton de l'application pour revenir au portefeuille
     public void retour(View view) {
         Intent appelActivite = new Intent();
         appelActivite.putExtra("devise", this.devise);

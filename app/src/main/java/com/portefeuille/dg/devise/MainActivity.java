@@ -4,9 +4,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Surface;
 import android.view.View;
 import android.widget.AdapterView;
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } else {
             this.grille = this.findViewById(R.id.gl_grille);
             this.textePortefeuille = this.findViewById(R.id.tv_portefeuille);
+            this.textePortefeuille.setTextSize(20.0f);
 
             genereBoutons();
             }
@@ -254,6 +258,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             boutonDevise.setTag(devise);
             boutonDevise.setOnClickListener(this);
             boutonDevise.setOnLongClickListener(this);
+            boutonDevise.setGravity(Gravity.CENTER);
+            boutonDevise.setTextColor(Color.WHITE);
+            boutonDevise.getBackground().setColorFilter(ContextCompat.getColor(
+                    this.getApplicationContext(), R.color.colorAccent), PorterDuff.Mode.MULTIPLY);
+
+
             this.grille.addView(boutonDevise);
 
             this.textePortefeuille.setText(this.monPorteFeuille.toString());

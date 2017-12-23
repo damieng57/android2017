@@ -91,7 +91,7 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     public void retour(View view) {
-        this.cancel(null);
+        onBackPressed();
     }
 
 }

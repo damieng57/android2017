@@ -5,39 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
     tools:context="com.portefeuille.dg.devise.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <ScrollView
         android:id="@+id/sv_scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="0dp"
+        android:scrollbarStyle="insideInset"
+        app:layout_constraintBottom_toTopOf="@id/tv_portefeuille"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <GridLayout
             android:id="@+id/gl_grille"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:columnCount="3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:alignmentMode="alignBounds"
-            >
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
+            <!--Ces boutons seront supprimer à l'execution, uniquement présent pour aider au design-->
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button" />
         </GridLayout>
 
     </ScrollView>
 
     <TextView
-        android:background="@drawable/encadrement"
         android:id="@+id/tv_portefeuille"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:hint="Portefeuille"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_margin="20dp"
+        android:background="@drawable/encadrement"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
 
         />
+
+
+
 
 </android.support.constraint.ConstraintLayout>

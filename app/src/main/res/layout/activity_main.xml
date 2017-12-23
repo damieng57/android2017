@@ -30,6 +30,6 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add"
         android:onClick="creeDevise"
-        android:tint="@color/colorPrimaryDark"/>
+        android:tint="@color/white" />
 
 </android.support.design.widget.CoordinatorLayout>

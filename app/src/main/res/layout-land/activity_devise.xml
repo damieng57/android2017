@@ -16,7 +16,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/retour"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -57,7 +57,9 @@
                     android:onClick="ajouter"
                     android:text="@string/ajouter"
                     app:layout_constraintLeft_toLeftOf="@id/et_nom"
-                    app:layout_constraintTop_toBottomOf="@id/et_nom" />
+                    app:layout_constraintTop_toBottomOf="@id/et_nom"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/colorAccent"/>
 
                 <Button
                     android:id="@+id/cancel"
@@ -67,7 +69,9 @@
                     android:onClick="retirer"
                     android:text="@string/retirer"
                     app:layout_constraintRight_toRightOf="@id/et_nom"
-                    app:layout_constraintTop_toBottomOf="@id/et_nom" />
+                    app:layout_constraintTop_toBottomOf="@id/et_nom"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/colorAccent"/>
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
@@ -81,7 +85,9 @@
             android:text="@string/retour"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorAccent"/>
 
     </android.support.constraint.ConstraintLayout>
 </android.support.design.widget.CoordinatorLayout>

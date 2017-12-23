@@ -16,8 +16,13 @@
         >
 
         <android.widget.ScrollView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/retour"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -60,6 +65,8 @@
                     app:layout_constraintTop_toBottomOf="@id/et_nom"
                     android:layout_marginTop="40dp"
                     android:onClick="ok"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/colorAccent"
                     />
 
                 <Button
@@ -71,6 +78,8 @@
                     app:layout_constraintTop_toBottomOf="@id/et_nom"
                     android:layout_marginTop="40dp"
                     android:onClick="cancel"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/colorAccent"
                     />
 
             </android.support.constraint.ConstraintLayout>
@@ -86,6 +95,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginBottom="30dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorAccent"
             android:onClick="retour"
             />
 
